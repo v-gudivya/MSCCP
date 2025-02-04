@@ -7,7 +7,7 @@
         "kind": "GCP",
         "properties": {
             "connectorDefinitionName": "GCPMonitorCCPDefinition",
-            "dataType": "GCPMonitorlogs_CL",
+            "dataType": "GCP_MONITORINGV2_CL",
             "dcrConfig": {
                 "streamName": "Custom-GCPMonitor",
                 "dataCollectionEndpoint": "{{dataCollectionEndpoint}}",

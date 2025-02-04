@@ -13,10 +13,6 @@
                         "type": "string"
                     },
                     {
-                        "name": "protoPayload",
-                        "type": "string"
-                    },
-                    {
                         "name": "TimeGenerated",
                         "type": "datetime"
                     }
@@ -39,8 +35,8 @@
                 "destinations": [
                     "clv2ws1"
                 ],
-                "transformKql": "source | extend resource = parse_json(resource) | extend resource_type = tostring(resource['type']) | extend resource_labels_zone = tostring(resource['labels']['zone']) | extend resource_labels_instance_id = tostring(resource['labels']['instance_id']) | extend resource_labels_project_id = tostring(resource['labels']['project_id']) | extend protoPayload = parse_json(protoPayload) | extend interval_startTime = tostring(protoPayload.request.interval.startTime) | extend interval_endTime = tostring(protoPayload.request.interval.endTime) | extend SourceSystem = 'CloudMonitoringAPI' | project resource_type, resource_labels_zone, resource_labels_instance_id, resource_labels_project_id, interval_startTime, interval_endTime, SourceSystem, TimeGenerated",
-                "outputStream": "Custom-GCPMonitorlogs_CL"
+                "transformKql": "source | extend resource = parse_json(resource) | extend resource_type = tostring(resource['type']) | extend resource_labels_zone = tostring(resource['labels']['zone']) | extend resource_labels_instance_id = tostring(resource['labels']['instance_id']) | extend resource_labels_project_id = tostring(resource['labels']['project_id']) | project resource_type, resource_labels_zone, resource_labels_instance_id, resource_labels_project_id, TimeGenerated",
+                "outputStream": "Custom-GCP_MONITORINGV2_CL"
             }
         ]
     }

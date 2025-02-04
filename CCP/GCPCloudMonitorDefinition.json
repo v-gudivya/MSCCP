@@ -10,7 +10,7 @@
             "title": "Google Cloud Platform Cloud Monitoring",
             "publisher": "Microsoft",
             "descriptionMarkdown": "The Google Cloud Platform Cloud Monitoring data connector provides the capability to ingest [GCP Monitoring metrics](https://cloud.google.com/monitoring/api/metrics_gcp) into Microsoft Sentinel using the GCP Monitoring API. Refer to [GCP Monitoring API documentation](https://cloud.google.com/monitoring/api/v3) for more information.",
-            "graphQueriesTableName": "GCPMonitorlogs_CL",
+            "graphQueriesTableName": "GCP_MONITORINGV2_CL",
             "graphQueries": [
                 {
                     "metricName": "Total events received",

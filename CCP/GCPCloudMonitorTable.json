@@ -1,21 +1,14 @@
 {
-    "name": "GCPMonitorlogs_CL",
+    "name": "GCP_MONITORINGV2_CL",
     "apiVersion": "2022-10-01-privatepreview",
     "type": "Microsoft.OperationalInsights/workspaces/tables",
     "location": "{{location}}",
     "kind": null,
     "properties": {
         "schema": {
-            "name": "GCPMonitorlogs_CL",
+            "name": "GCP_MONITORINGV2_CL",
             "columns": [
-                {
-                    "name": "resource",
-                    "type": "string"
-                },
-                {
-                    "name": "protoPayload",
-                    "type": "string"
-                },
+                
                 {
                     "name": "TimeGenerated",
                     "type": "datetime"
@@ -35,14 +28,6 @@
                 {
                     "name": "resource_labels_project_id",
                     "type": "string"
-                },
-                {
-                    "name": "interval_startTime",
-                    "type": "datetime"
-                },
-                {
-                    "name": "interval_endTime",
-                    "type": "datetime"
                 }
             ]
         }
