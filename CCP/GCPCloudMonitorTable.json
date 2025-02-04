@@ -9,32 +9,16 @@
             "name": "GCPMonitorlogs_CL",
             "columns": [
                 {
-                    "name": "SourceSystem",
+                    "name": "resource",
+                    "type": "string"
+                },
+                {
+                    "name": "protoPayload",
                     "type": "string"
                 },
                 {
                     "name": "TimeGenerated",
                     "type": "datetime"
-                },
-                {
-                    "name": "metric_labels_device_name",
-                    "type": "string"
-                },
-                {
-                    "name": "metric_labels_storage_type",
-                    "type": "string"
-                },
-                {
-                    "name": "metric_labels_device_type",
-                    "type": "string"
-                },
-                {
-                    "name": "metric_labels_instance_name",
-                    "type": "string"
-                },
-                {
-                    "name": "metric_type",
-                    "type": "string"
                 },
                 {
                     "name": "resource_type",
@@ -53,24 +37,12 @@
                     "type": "string"
                 },
                 {
-                    "name": "metricKind",
-                    "type": "string"
-                },
-                {
-                    "name": "valueType",
-                    "type": "string"
-                },
-                {
                     "name": "interval_startTime",
                     "type": "datetime"
                 },
                 {
                     "name": "interval_endTime",
                     "type": "datetime"
-                },
-                {
-                    "name": "value_int64Value",
-                    "type": "dynamic"
                 }
             ]
         }

@@ -9,40 +9,16 @@
             "Custom-GCPMonitor": {
                 "columns": [
                     {
-                        "name": "SourceSystem",
+                        "name": "resource",
+                        "type": "string"
+                    },
+                    {
+                        "name": "protoPayload",
                         "type": "string"
                     },
                     {
                         "name": "TimeGenerated",
                         "type": "datetime"
-                    },
-                    {
-                        "name": "metric",
-                        "type": "string"
-                    },
-                    {
-                        "name": "resource",
-                        "type": "string"
-                    },
-                    {
-                        "name": "metricKind",
-                        "type": "string"
-                    },
-                    {
-                        "name": "valueType",
-                        "type": "string"
-                    },
-                    {
-                        "name": "interval_startTime",
-                        "type": "datetime"
-                    },
-                    {
-                        "name": "interval_endTime",
-                        "type": "datetime"
-                    },
-                    {
-                        "name": "value_int64Value",
-                        "type": "dynamic"
                     }
                 ]
             }
@@ -63,7 +39,7 @@
                 "destinations": [
                     "clv2ws1"
                 ],
-                "transformKql": "source | extend metricDynamic = parse_json(metric)| extend resourceDynamic = parse_json(resource)| extend metric_type = tostring(metricDynamic['type'])| extend metric_labels_device_name = tostring(metricDynamic['labels']['device_name'])| extend metric_labels_instance_name = tostring(metricDynamic['labels']['instance_name'])| extend metric_labels_device_type = tostring(metricDynamic['labels']['device_type'])| extend metric_labels_storage_type = tostring(metricDynamic['labels']['storage_type']) | extend resource_type = tostring(resourceDynamic['type'])| extend resource_labels_zone = tostring(resourceDynamic['labels']['zone'])| extend resource_labels_instance_id = tostring(resourceDynamic['labels']['instance_id'])| extend resource_labels_project_id = tostring(resourceDynamic['labels']['project_id'])| extend SourceSystem = 'CloudMonitoringAPI'| project SourceSystem, TimeGenerated, metric_labels_device_name, metric_labels_storage_type, metric_labels_device_type, metric_labels_instance_name, metric_type, resource_type, resource_labels_zone, resource_labels_instance_id, resource_labels_project_id, metricKind, valueType, interval_startTime, interval_endTime, value_int64Value",
+                "transformKql": "source | extend resource = parse_json(resource) | extend resource_type = tostring(resource['type']) | extend resource_labels_zone = tostring(resource['labels']['zone']) | extend resource_labels_instance_id = tostring(resource['labels']['instance_id']) | extend resource_labels_project_id = tostring(resource['labels']['project_id']) | extend protoPayload = parse_json(protoPayload) | extend interval_startTime = tostring(protoPayload.request.interval.startTime) | extend interval_endTime = tostring(protoPayload.request.interval.endTime) | extend SourceSystem = 'CloudMonitoringAPI' | project resource_type, resource_labels_zone, resource_labels_instance_id, resource_labels_project_id, interval_startTime, interval_endTime, SourceSystem, TimeGenerated",
                 "outputStream": "Custom-GCPMonitorlogs_CL"
             }
         ]

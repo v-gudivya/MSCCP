@@ -85,7 +85,7 @@
                         {
                             "type": "Markdown",
                             "parameters": {
-                                "content": "#### 3. Enable Monitoring logs \n Enable Monitoring logs \nIn your GCP account, navigate to the Monitor section. Navigate to Dashboards, Create a new dashboard and add a widget, Add a specific widget according to the specifications. Refer the document(https://cloud.google.com/logging/docs/alerting/monitoring-logs)."
+                                "content": "#### 3. Enable Monitoring logs \n In your GCP account, navigate to the Monitor section. Navigate to Dashboards, Create a new dashboard and add a widget, Add a specific widget according to the specifications. Refer the document(https://cloud.google.com/monitoring/charts/dashboards#:~:text=In%20the%20Dashboards%20page%2C%20click%20Create%20custom%20dashboard.,or%20how%20you%20want%20to%20display%20the%20data.)."
                             }
                         },
                         {
