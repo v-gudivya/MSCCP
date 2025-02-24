@@ -1,9 +1,9 @@
 # Integrating Google Cloud Platform Cloud Monitoring into Microsoft Sentinel
 ## Table of contents
 - [Introduction](#intro)
-- [Steps to install the Connector](#step1)
-- [Steps to add the new Collector](#step2)
-- [Steps to execute Terraform Scripts](#terraform)
+- [Prerequisites](#step2)
+- [Steps to execute Terraform Scripts for Log setup](#log)
+- [Steps to execute Terraform Scripts for Authentication setup](#auth)
 
 
 <a name="intro">
@@ -11,73 +11,59 @@
 ## Introduction
 The Google Cloud Platform Cloud Monitoring Codeless Connector for Microsoft Sentinel enables seamless integration of Google Cloud Platform Cloud Monitoring logs with Microsoft Sentinel without the need for custom code. Developed as part of the Codeless Conector Platform(CCP), this connector simplifies the process of collecting and ingesting Cloud Monitoring logs from Google Cloud Platform into Microsoft Sentinel.
 
-<a name="step1">
-   
-## Steps to install the Connector
-Install the **Google Cloud Platform Cloud Monitoring** connector from `Content Hub`
-
 <a name="step2">
+   
+## Prerequisites
+The below mentioned resources are required to connect GCP with Sentinel.
+- Project ID
+- Project Number
+- GCP Subscription Name
+- Workload Identity Pool ID
+- Service Account
+- Workload Identity Provider ID
 
-## Steps to add the new Collector
+To generate the above resources, you must execute the following terraform scripts.
 
-- After installing the connector, navigate to `Data Connectors` and select on the Google Cloud Platform Cloud Monitoring Connector.
+- Log Setup File
+- Authentication setup file
   
-- A new window pops up in the bottom, and click on `Open Connector Page`.
-  
-- Now, click on `Add new collector` button.
-  
-- Navigate to Google Cloud Console and select the project you want to monitor and fetch the following fields
-  
-- `Project ID` and `Project Number`: You can find these details in the home page of the project.
-  
-- `GCP subscription name`: If the subscription already exists, search for **Pub/Sub** section in the search bar and navigate to the subscription tab. You can find the details about subscrition name and subscription state.
-  
-- If the subscription does not exist, go to the **Topics** section and create a new topic with the desired topic ID.
-  
-- After the topic is created, proceed to the **Subscriptions** section and create a new subscription with the desired subscription ID by selecting the specific topic ID.
-  
-- Provide the appropriate details for the below mentioned fields based on your requirement:
-  - Delivery Type
-  - Message retention duration
-  - Expiration period
-  - Acknowledgement deadline
-  - Subscription filter
-  - Exactly once delivery
-  - Message ordering
-  - Dead lettering
-  - Retry policy
-    
-- `Workload identity pool ID` and `Workload identity provider ID`: To get this ID, you must run the terraform script for Cloud Monitoring in cloud shell of Google Cloud Platform. You can find the script files in the home page of the connector or find them in the steps provided below.
+<a name="log">
 
-<a name="terraform">
-
-### Steps to execute Terrraform scripts
-[Click here](https://github.com/v-gudivya/MSCCP/tree/main/Test) to access the terraform scripts.
-
-- Launch the cloud shell and create a directory using **mkdir <dir_name>** and navigate to the directory using **cd<dir_name>**.
-  
-- Copy the raw link of the Terraform script and get the content of the file into a shell using the below command:
+## Steps to execute Terrraform scripts for Log Setup
+To access the terraform script for Log Setup [Click here](https://github.com/v-gudivya/MSCCP/tree/main/GCPMONITORLOGSETUP).
+- After accessing the log setup file, edit the project id as per your project.
+- Launch the cloud shell in Google Cloud Console.
+- Execute the below mentioned commands.
+- create a directory
+  ```
+  mkdir <dir_name>
+  ```
+- Navigate to the directory
+  ```
+  cd <dir_name>
+  ```
+- Copy the github raw link of the Terraform script and get the content of the file into a shell using the following command:
    ```
-   wget <link of the file> -O <filename.tf>
+   wget <raw link of the file> -O <filename.tf>
    ```
-- Now run the following commands
-
-   Initializes your terraform working directory, downloads provider plugins, and configures the backend for state storage.
+- Initializes your terraform working directory, downloads provider plugins, and configures the backend for state storage.
    ```
    terraform init
    ```
-   Creates an execution plan to show what actions terraform will take to achieve the desired state of your infrastructure.
+- Creates an execution plan to show what actions terraform will take to achieve the desired state of your infrastructure.
    ```
    terraform plan
    ```
-   Executes the actions proposed in the Terraform plan to create, update, or destroy resources in your infrastructure.
+- Executes the actions proposed in the Terraform plan to create, update, or destroy resources in your infrastructure.
    ```
    terraform apply
    ```
-- After successfully executing the above mentioned commands, the workload Identity Pool ID and Provider ID is created in Google Cloud Platform.
-  
-- Search for **Workload Identity Federation** in the search bar and find the Workload Identity pool ID and Provider ID.
-  
-- `Service account email` : Navigate to **Service accounts** section from the search bar and use the appropriate service account for authentication.
+- After successfully executing the Log Setup file, `topic name`, `subscription name` is generated in the GCP Project. Save those details for future reference.
 
-After filling all the details, click on `Connect`, then you will be able to connect the Google Cloud Platform Cloud Monitoring connector to monitor the cloud monitoring logs.
+<a name="auth">
+  
+## Steps to execute Terraform script for Authentication setup
+- If the Authentication setup file is previously executed in the project while configuring any other GCP data connectors, there is no need to execute the Authentication setup file again. You can use the existing `Workload Identity Pool ID` and `Workload Identity Provider ID` for authentication  purpose.
+- If these fields are not generated previously, execute the Authentication Setup file with the same commands mentioned above.
+- To access the Authentication Setup file [Click Here](https://github.com/Azure/Azure-Sentinel/tree/master/DataConnectors/GCP/Terraform/sentinel_resources_creation/GCPInitialAuthenticationSetup).
+- After executing the authentication setup file, `Workload Identity Pool ID` and `Workload Identity Provider ID` are generated in the project.
