@@ -9,7 +9,7 @@
 <a name="intro">
 
 ## Introduction
-The GCP Cloud CDN Codeless Connector for Microsoft Sentinel enables seamless integration of Google Cloud Platform Cloud Monitoring logs with Microsoft Sentinel without the need for custom code. Developed as part of the Codeless Conector Platform(CCP), this connector simplifies the process of collecting and ingesting Cloud CDN logs from Google Cloud Platform into Microsoft Sentinel.
+The GCP Cloud CDN Codeless Connector for Microsoft Sentinel enables seamless integration of GCP Cloud CDN logs with Microsoft Sentinel without the need for custom code. Developed as part of the Codeless Conector Platform(CCP), this connector simplifies the process of collecting and ingesting Cloud CDN logs from Google Cloud Platform into Microsoft Sentinel.
 
 <a name="step2">
    
